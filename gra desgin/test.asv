@@ -1,0 +1,24 @@
+% x = [14];
+% y = [14];
+% %生成山峰的高度
+% h = [1];
+% %生成山峰的坡度
+% xs = [2];
+% ys = [2];
+% %生成地形数据
+% Z = ones(171,171);
+% [X,Y] = meshgrid(0:0.1:17);
+% for k1 = 1
+%     Z =  Z + h(k1)*exp(-((X - x(k1))/xs(k1)).^2 - ((Y - y(k1))/ys(k1)).^2);
+% end
+% P_total = 6*171*171;
+% P_tem = sum(Z(:));
+% Z = Z*P_total/P_tem;
+% meshz(X,Y,Z);
+
+Wcalcu = I_record.^2*par.R+par.alpha*I_record.*(Th_record-Tc_record);
+calcu = abs(par.n*calcu);
+calcu2 = par.n*abs(par.alpha*I_record.*(Th_record-Tc_record));
+COP_cal = calcu2./calcu;
+calcu3 = range(Tchip_record,1);
+W

@@ -1,0 +1,9 @@
+Tchip_record = Tchip_record';
+Tc_record = Tc_record';
+Th_record = Th_record';
+To_record = To_record';
+Ti_record = Ti_record';
+Tg_record = Tg_record';
+h_record = h_record';
+Dz_record = 1000*Dz_record;
+Dz_record = Dz_record';
