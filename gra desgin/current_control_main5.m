@@ -51,7 +51,7 @@ T_chip_target_record = zeros(search_num);
 grad = zeros(289,search_num);
 need_control_record = zeros(289,search_num);
 j = 1 ;
-
+i_special =1;
 %开始沿程循环
 while Dz<=par.length
     %默认用无电流模式开始工作
@@ -99,8 +99,13 @@ while Dz<=par.length
     Dz_record(i,j) = Dz;
 
     %开始判断是否满足控温标准
-    [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j);
+    
+    [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
     need_control_record(i,j) = need_control;
+    %存储突变前的点
+    if need_control == 0
+        i_special = i;
+    end
     T_chip_target_record(i,j) = Tchip_target_recmd;
     %命令行显示进度
     disp(i);
@@ -181,7 +186,7 @@ while Dz<=par.length
         Q_tec_record(i,j) = Q_tec;
         Dz_record(i,j) = Dz;
         %再检查一遍是否需要调控
-        [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j);
+        [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
         T_chip_target_record(i,j) = Tchip_target_recmd;
     end
     %结束一个单元的计算

@@ -51,7 +51,7 @@ T_chip_target_record = zeros(search_num);
 grad = zeros(289,search_num);
 need_control_record = zeros(289,search_num);
 j = 1 ;
-
+i_special =1;
 %开始沿程循环
 while Dz<=par.length
     %默认用无电流模式开始工作
@@ -65,7 +65,7 @@ while Dz<=par.length
     q5_r= h*par.a_g*(Ti-Tg);
     Q_tec = q3_l-q2_l;
     Q_tec = abs(Q_tec);
-    COP = 1/(Q_tec/q2_l);
+    % COP = 1/(Q_tec/q2_l);
     [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g] = refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
     
     
@@ -94,13 +94,18 @@ while Dz<=par.length
     flag_record(i,j) = flag;
     n_record(i,j) = n;
     choice_record(i,j) = choice;
-    COP_record(i,j) = COP;
+    COP_record(i,j) = 0;
     Q_tec_record(i,j) = Q_tec;
     Dz_record(i,j) = Dz;
 
     %开始判断是否满足控温标准
-    [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j);
+    
+    [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
     need_control_record(i,j) = need_control;
+    %存储突变前的点
+    if need_control == 0
+        i_special = i;
+    end
     T_chip_target_record(i,j) = Tchip_target_recmd;
     %命令行显示进度
     disp(i);
@@ -111,7 +116,7 @@ while Dz<=par.length
     disp(T_chip);
     %如果需要控温，采用独立调控程序
     contol_repeat = 0;
-    while need_control == 1
+    while need_control ~= 0
         disp('进入独立调控环节')
         contol_repeat = contol_repeat + 1;
         disp('当前重复调控次数')
@@ -123,13 +128,15 @@ while Dz<=par.length
         disp(Tchip_target_recmd)
         disp('实际温度为');
         disp(T_chip);
+        disp('不满足记号为');
+        disp(need_control);
         initial_change = 0;
         while flag <= 0 
     
             %如果控不住，换随机初始值再来一次
             % T_chip_target = T_chip_target + 1;
             initial_change = initial_change + 1;
-            [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_record,I_record);
+            [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record);
             disp(i);
             disp(j);
             disp('更换随机初始值数');
@@ -146,7 +153,7 @@ while Dz<=par.length
         q5_r= h*par.a_g*(Ti-Tg);
         Q_tec = q3_l-q2_l;
         Q_tec = abs(Q_tec);
-        % COP = 1/(Q_tec/q2_l);
+        COP = 1/(Q_tec/q2_l);
         [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g] = refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
         
         
@@ -175,11 +182,11 @@ while Dz<=par.length
         flag_record(i,j) = flag;
         n_record(i,j) = n;
         choice_record(i,j) = choice;
-        COP_record(i,j) = 0;
+        COP_record(i,j) = COP;
         Q_tec_record(i,j) = Q_tec;
         Dz_record(i,j) = Dz;
         %再检查一遍是否需要调控
-        [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j);
+        [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
         T_chip_target_record(i,j) = Tchip_target_recmd;
     end
     %结束一个单元的计算
