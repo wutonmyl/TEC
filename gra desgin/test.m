@@ -24,10 +24,13 @@
 % Q_real = par.n*(par.alpha*I_record.*Tc_record-par.R*I_record.^2/2);
 % diff = Q_max-Q_real;
 % dletaT_max = (diff-6)/(par.n*par.k_p*par.a_copper/par.delta_p);
-par = para;
+% par = para;
+% 
+% % [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g]=refpropm('CDHVL^','T',Tg_record,'P',par.P,'methane')
+% a = [13;3;3];
+% var(a(1:2,1))
+% b = [13,3];
+% var(b)
 
-% [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g]=refpropm('CDHVL^','T',Tg_record,'P',par.P,'methane')
-a = [13;3;3];
-var(a(1:2,1))
-b = [13,3];
-var(b)
+a = [1 3 5 6 8 3 34 23 1];
+gradient(a)

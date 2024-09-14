@@ -15,8 +15,8 @@ Dz = dz;
 i = 1;
 T_g_in = par.T_g_in;
 %给出在控温区间内大致搜索的范围
-search_num = 35;
-% search_num = 1;
+% search_num = 35;
+search_num = 1;
 %构造数据记录
 diary('myDiaryFile');
 Q_tec_record = zeros(289,search_num);
@@ -68,7 +68,7 @@ for j = 1:search_num
         %     % T_chip_target = 273-3+3*j+-40;
         %     T_chip_target = 280-3+3*j;
         % end
-        T_chip_target = 233-3+3*j;
+        T_chip_target = 294-3+3*j;
         %有了控温目标后开始非线性求解
         
         [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_target,I_record);

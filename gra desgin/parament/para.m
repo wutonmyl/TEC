@@ -48,7 +48,7 @@ classdef para
         k_channel = 400
         delta_channel = 0.25e-3
         P = 5e3
-        mg = 0.007
+        mg = 0.007*2
         Dz = 3e-3
         % T_g_in = 185
         T_g_in = 185

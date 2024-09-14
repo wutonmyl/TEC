@@ -3,8 +3,8 @@ function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_so
 %   将方程组彻底变为优化问题,让功率器件温度变为优化目标
 rng default
 % 定义优化变量
-lb = [-10,100,Tchip_target_recmd,185,185,185,Tchip_target_recmd-50];
-ub = [10,400,800,700,600,600,600];
+lb = [0,100,Tchip_target_recmd,185,185,185,Tchip_target_recmd-50];
+ub = [10,400,700,700,600,600,600];
 x = optimvar('x',7,'LowerBound',lb,'UpperBound',ub);
 %第一个式子关于pchip还需要修改
 exp1 = heat_change(i)-par.k_ct*par.a_te*(x(7)-x(2));
@@ -55,15 +55,17 @@ prob.Constraints.limit2 = limit2;
 
 %查看可用求解器
 [~,validsolvers] = solvers(prob);
-% disp(validsolvers);
+disp(validsolvers);
 % cansave = x(3)-x(2) >= 0;
 % 
 % prob.Constraints.cansave = cansave;
+rng("shuffle");
 x0.x = (ub-lb).*rand(1,7)+lb;
+disp(x0.x);
 % x0.x = [230,185,198,202,243,300];
-Options = optimoptions("lsqnonlin",'Display','none','MaxFunctionEvaluations',3e4,'ConstraintTolerance',1e-5);
-% Options = optimoptions("gamultiobj",'Display','iter');
-[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+% Options = optimoptions("lsqnonlin",'Display','final','MaxFunctionEvaluations',3e4,'ConstraintTolerance',1e-5);
+Options = optimoptions("fmincon",'Display','iter');
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options,'Solver','fmincon');
 % exitflag
 flag = exitflag;
 

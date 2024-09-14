@@ -50,6 +50,7 @@ mu_g_record = zeros(search_num);
 T_chip_target_record = zeros(search_num);
 grad = zeros(289,search_num);
 need_control_record = zeros(289,search_num);
+i_special_record = zeros(289,search_num);
 j = 1 ;
 i_special =1;
 %开始沿程循环
@@ -102,10 +103,11 @@ while Dz<=par.length
     
     [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
     need_control_record(i,j) = need_control;
-    %存储突变前的点
+    % % %存储突变前的点
     if need_control == 0
         i_special = i;
     end
+    i_special_record(i,j) = i_special;
     T_chip_target_record(i,j) = Tchip_target_recmd;
     %命令行显示进度
     disp(i);
@@ -131,6 +133,9 @@ while Dz<=par.length
         disp('不满足记号为');
         disp(need_control);
         initial_change = 0;
+
+
+        %求解器抱错误解进入循环
         while flag <= 0 
     
             %如果控不住，换随机初始值再来一次
@@ -185,6 +190,9 @@ while Dz<=par.length
         COP_record(i,j) = COP;
         Q_tec_record(i,j) = Q_tec;
         Dz_record(i,j) = Dz;
+        %结束数据记录
+
+
         %再检查一遍是否需要调控
         [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,i_special);
         T_chip_target_record(i,j) = Tchip_target_recmd;
@@ -206,4 +214,4 @@ range_T_chip = range(Tchip_record(:,j));
 var_T_chip = var(Tchip_record(:,j));
 std_T_chip = std(Tchip_record(:,j));
 
-
+show

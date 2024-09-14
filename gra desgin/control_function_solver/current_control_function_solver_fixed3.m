@@ -3,8 +3,8 @@ function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_so
 %   将方程组彻底变为优化问题,让功率器件温度变为优化目标
 rng default
 % 定义优化变量
-lb = [-10,100,T_chip_taget,185,185,185,T_chip_taget-50];
-ub = [10,400,800,700,600,600,600];
+lb = [0,100,T_chip_taget,185,185,185,T_chip_taget-10];
+ub = [10,400,700,700,600,600,600];
 x = optimvar('x',7,'LowerBound',lb,'UpperBound',ub);
 %第一个式子关于pchip还需要修改
 exp1 = heat_change(i)-par.k_ct*par.a_te*(x(7)-x(2));
@@ -26,7 +26,7 @@ eqn4 = exp4 == 0;
 eqn5 = exp5 == 0;
 eqn6 = exp6 == 0;
 a = 1;
-b = 1;
+b = 100;
 %注意，这里采用全局优化求解器要给约束1加上乘项，不然求解器识别约束会报错
 limit1 = (x(3)-x(2))>=0 ;
 limit2 = par.n*(par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2) >= 0;
@@ -59,6 +59,7 @@ prob.Constraints.limit2 = limit2;
 % cansave = x(3)-x(2) >= 0;
 % 
 % prob.Constraints.cansave = cansave;
+rng("shuffle");
 x0.x = (ub-lb).*rand(1,7)+lb;
 % x0.x = [230,185,198,202,243,300];
 Options = optimoptions("lsqnonlin",'Display','none','MaxFunctionEvaluations',3e4,'ConstraintTolerance',1e-5);
