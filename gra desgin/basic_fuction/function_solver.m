@@ -26,7 +26,7 @@ prob.Equations.eq5 = eq5;
 prob.Equations.eq6 = eq6;
 x0.x = [210,195,198,202,243,300];
 % x0.x = [230,185,198,202,243,300];
-Options = optimoptions('lsqnonlin','MaxFunctionEvaluations',3e4,'MaxIterations',3e4,'Algorithm','levenberg-marquardt',OptimalityTolerance=1e-8);
+Options = optimoptions('lsqnonlin','MaxFunctionEvaluations',3e4,'MaxIterations',3e4,'Display','none','Algorithm','levenberg-marquardt',OptimalityTolerance=1e-8);
 [sol,fval,exitflag] = solve(prob,x0,'Options',Options);
 % exitflag;
 flag = exitflag;

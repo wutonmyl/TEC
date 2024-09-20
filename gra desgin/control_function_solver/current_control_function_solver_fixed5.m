@@ -55,17 +55,17 @@ prob.Constraints.limit2 = limit2;
 
 %查看可用求解器
 [~,validsolvers] = solvers(prob);
-disp(validsolvers);
+% disp(validsolvers);
 % cansave = x(3)-x(2) >= 0;
 % 
 % prob.Constraints.cansave = cansave;
 rng("shuffle");
 x0.x = (ub-lb).*rand(1,7)+lb;
-disp(x0.x);
+% disp(x0.x);
 % x0.x = [230,185,198,202,243,300];
 % Options = optimoptions("lsqnonlin",'Display','final','MaxFunctionEvaluations',3e4,'ConstraintTolerance',1e-5);
-Options = optimoptions("fmincon",'Display','iter');
-[sol,fval,exitflag] = solve(prob,x0,'Options',Options,'Solver','fmincon');
+Options = optimoptions("lsqnonlin",'Display','none');
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options,'Solver','lsqnonlin');
 % exitflag
 flag = exitflag;
 
