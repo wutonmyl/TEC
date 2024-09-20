@@ -39,7 +39,7 @@ Power(290) = Power(289);
 
 P = Power(n);
 % 均匀热流更改
-% P = 6;
+P = 6;
 end
 
 
