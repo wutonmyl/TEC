@@ -1,0 +1,632 @@
+     1
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     2
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     3
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     4
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     5
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     6
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     7
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     8
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     9
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+{操作在以下过程中被用户终止 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('refpropm', 'F:\matlab work\gra desgin\basic_fuction\refpropm.m', 299)" style="font-weight:bold">refpropm</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\basic_fuction\refpropm.m',299,0)">第 299 行</a>)
+
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Heat_transfer_coff_SCH4', 'F:\matlab work\gra desgin\basic_fuction\Heat_transfer_coff_SCH4.m', 4)" style="font-weight:bold">Heat_transfer_coff_SCH4</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\basic_fuction\Heat_transfer_coff_SCH4.m',4,0)">第 4 行</a>)
+[Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g]=refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_function_solver_fixed3>@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6))', 'F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m', 17)" style="font-weight:bold">current_control_function_solver_fixed3>@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6))</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m',17,0)">第 17 行</a>)
+ls5 = fcn2optimexpr(@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6)),x);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('generatedConstraints', 'inmem:///optim_problemdef/probID31/generatedConstraints.m', 62)" style="font-weight:bold">generatedConstraints</a> (<a href="matlab: opentoline('inmem:///optim_problemdef/probID31/generatedConstraints.m',62,0)">第 62 行</a>)
+
+位置 optim.internal.problemdef.compile.snapExtraParams
+
+位置 finDiffEvalAndChkErr
+
+位置 finitedifferences
+
+位置 computeFinDiffGradAndJac
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls/nonlconExt', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 423)" style="font-weight:bold">cnls/nonlconExt</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',423,0)">第 423 行</a>)
+                [~,JacCineqTrans,JacCeqTrans,numEvals,~] = computeFinDiffGradAndJac(xIn,[],NONLCON,[], ...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls>@(x)nonlconExt(x,true)', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 158)" style="font-weight:bold">cnls>@(x)nonlconExt(x,true)</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',158,0)">第 158 行</a>)
+    congrad = @(x) nonlconExt(x, true);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('constrgradEvaluator', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\constrgradEvaluator.m', 5)" style="font-weight:bold">constrgradEvaluator</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\constrgradEvaluator.m',5,0)">第 5 行</a>)
+[IneqGrad, EqGrad] = feval(Nonlcongrad, x, self.FunArgs.AdditionalParameters{:});
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('OptimFunctions/constraintgrad', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m', 505)" style="font-weight:bold">OptimFunctions/constraintgrad</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m',505,0)">第 505 行</a>)
+                    self.ConstraintGradient(self,self.ConFcn{4},X);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('OptimFunctions/computeGradAndJac', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m', 601)" style="font-weight:bold">OptimFunctions/computeGradAndJac</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m',601,0)">第 601 行</a>)
+                    self.constraintgrad(reshape(X,self.sizes.xShape),[],[],...
+
+位置 barrier
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fmincon', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m', 663)" style="font-weight:bold">fmincon</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m',663,0)">第 663 行</a>)
+    [X,FVAL,EXITFLAG,OUTPUT,LAMBDA,GRAD,HESSIAN] = barrier(funObj,X,A,B,Aeq,Beq,l,u,options.HessFcn, ...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 215)" style="font-weight:bold">cnls</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',215,0)">第 215 行</a>)
+    [X,~,EXITFLAG,OUTPUT,LAMBDA] = fmincon({fun,fungrad},X(:),...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lsqnonlin', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m', 222)" style="font-weight:bold">lsqnonlin</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m',222,0)">第 222 行</a>)
+    [xCurrent,Resnorm,FVAL,EXITFLAG,OUTPUT,LAMBDA,JACOB] = cnls(caller, FUN,xCurrent,A,B,Aeq,Beq,LB,UB,NONLCON, ...
+
+位置 optim.problemdef.OptimizationProblem/callSolver
+
+位置 optim.internal.problemdef.ProblemImpl/solveImpl
+
+位置 optim.problemdef.OptimizationProblem/solve
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_function_solver_fixed3', 'F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m', 66)" style="font-weight:bold">current_control_function_solver_fixed3</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m',66,0)">第 66 行</a>)
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 74)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',74,0)">第 74 行</a>)
+        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_target,I_record);
+} 
+current_control_main3
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\heat_change] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 5)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',5,0)">第 5 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\basic_fuction] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 7)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',7,0)">第 7 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\parament] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 9)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',9,0)">第 9 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\control_function_solver] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 11)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',11,0)">第 11 行</a>)] 
+     1
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     2
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     3
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     4
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     5
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     6
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     7
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     8
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     9
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    10
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    11
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    12
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    13
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    14
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    15
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    16
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    17
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+    18
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+{操作在以下过程中被用户终止 optim.internal.problemdef.ExpressionForest/createBinary
+
+
+位置 optim.problemdef.OptimizationExpression/createBinary
+
+位置 .*
+
+位置 *
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_function_solver_fixed3', 'F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m', 32)" style="font-weight:bold">current_control_function_solver_fixed3</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m',32,0)">第 32 行</a>)
+limit2 = par.n*(par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2) >= 0;
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 74)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',74,0)">第 74 行</a>)
+        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_target,I_record);
+} 
+current_control_main3
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\basic_fuction] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 7)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',7,0)">第 7 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\parament] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 9)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',9,0)">第 9 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\control_function_solver] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 11)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',11,0)">第 11 行</a>)] 
+     1
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     2
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     3
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     4
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     5
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     6
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     7
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     8
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+{操作在以下过程中被用户终止 optim.internal.problemdef.compile.snapExtraParams
+
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls/funExt', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 379)" style="font-weight:bold">cnls/funExt</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',379,0)">第 379 行</a>)
+            F = feval(FUN, Xk);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls/objective', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 322)" style="font-weight:bold">cnls/objective</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',322,0)">第 322 行</a>)
+            f = funExt(xIn);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls>@(x)objective(x,false)', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 187)" style="font-weight:bold">cnls>@(x)objective(x,false)</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',187,0)">第 187 行</a>)
+fun = @(x) objective(x, false);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('objfunEvaluator', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\objfunEvaluator.m', 5)" style="font-weight:bold">objfunEvaluator</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\objfunEvaluator.m',5,0)">第 5 行</a>)
+fval = feval(Objfun, x, self.FunArgs.AdditionalParameters{:});
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('OptimFunctions/objective', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m', 271)" style="font-weight:bold">OptimFunctions/objective</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m',271,0)">第 271 行</a>)
+            [fval_, fgrad_, hess_] = self.ObjectiveFunAndGrad(self,self.FunFcn{3},...
+
+位置 barrier
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fmincon', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m', 663)" style="font-weight:bold">fmincon</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m',663,0)">第 663 行</a>)
+    [X,FVAL,EXITFLAG,OUTPUT,LAMBDA,GRAD,HESSIAN] = barrier(funObj,X,A,B,Aeq,Beq,l,u,options.HessFcn, ...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 215)" style="font-weight:bold">cnls</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',215,0)">第 215 行</a>)
+    [X,~,EXITFLAG,OUTPUT,LAMBDA] = fmincon({fun,fungrad},X(:),...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lsqnonlin', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m', 222)" style="font-weight:bold">lsqnonlin</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m',222,0)">第 222 行</a>)
+    [xCurrent,Resnorm,FVAL,EXITFLAG,OUTPUT,LAMBDA,JACOB] = cnls(caller, FUN,xCurrent,A,B,Aeq,Beq,LB,UB,NONLCON, ...
+
+位置 optim.problemdef.OptimizationProblem/callSolver
+
+位置 optim.internal.problemdef.ProblemImpl/solveImpl
+
+位置 optim.problemdef.OptimizationProblem/solve
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_function_solver_fixed3', 'F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m', 66)" style="font-weight:bold">current_control_function_solver_fixed3</a> (<a href="matlab: opentoline('F:\matlab work\gra desgin\control_function_solver\current_control_function_solver_fixed3.m',66,0)">第 66 行</a>)
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 74)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',74,0)">第 74 行</a>)
+        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_target,I_record);
+} 
+current_control_main3
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\basic_fuction] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 7)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',7,0)">第 7 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\parament] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 9)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',9,0)">第 9 行</a>)] 
+[警告: 名称不存在或不是目录: F:\matlab work\GitHub TEC\gra design\control_function_solver] 
+[> 位置：<a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m', 109)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\path.m',109,0)">第 109 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath>doPathAddition', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 126)" style="font-weight:bold">addpath>doPathAddition</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',126,0)">第 126 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m', 90)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\matlab\general\addpath.m',90,0)">第 90 行</a>)
+位置: <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 11)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',11,0)">第 11 行</a>)] 
+     1
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     2
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     3
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     4
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     5
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     6
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+     7
+
+     1
+
+当前控温目标为
+   233
+
+实际温度为
+  233.0000
+
+{操作在以下过程中被用户终止 finDiffEvalAndChkErr
+
+
+位置 finitedifferences
+
+位置 computeFinDiffGradAndJac
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls/nonlconExt', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 423)" style="font-weight:bold">cnls/nonlconExt</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',423,0)">第 423 行</a>)
+                [~,JacCineqTrans,JacCeqTrans,numEvals,~] = computeFinDiffGradAndJac(xIn,[],NONLCON,[], ...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls>@(x)nonlconExt(x,true)', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 158)" style="font-weight:bold">cnls>@(x)nonlconExt(x,true)</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',158,0)">第 158 行</a>)
+    congrad = @(x) nonlconExt(x, true);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('constrgradEvaluator', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\constrgradEvaluator.m', 5)" style="font-weight:bold">constrgradEvaluator</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\constrgradEvaluator.m',5,0)">第 5 行</a>)
+[IneqGrad, EqGrad] = feval(Nonlcongrad, x, self.FunArgs.AdditionalParameters{:});
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('OptimFunctions/constraintgrad', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m', 505)" style="font-weight:bold">OptimFunctions/constraintgrad</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m',505,0)">第 505 行</a>)
+                    self.ConstraintGradient(self,self.ConFcn{4},X);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('OptimFunctions/constraint_first_eval', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m', 690)" style="font-weight:bold">OptimFunctions/constraint_first_eval</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\OptimFunctions.m',690,0)">第 690 行</a>)
+                        [cingrad,ceqgrad,~,~,self] = self.constraintgrad(X0);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fmincon', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m', 516)" style="font-weight:bold">fmincon</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\fmincon.m',516,0)">第 516 行</a>)
+    funObj.constraint_first_eval(X);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('cnls', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m', 215)" style="font-weight:bold">cnls</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\private\cnls.m',215,0)">第 215 行</a>)
+    [X,~,EXITFLAG,OUTPUT,LAMBDA] = fmincon({fun,fungrad},X(:),...
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lsqnonlin', 'F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m', 222)" style="font-weight:bold">lsqnonlin</a> (<a href="matlab: opentoline('F:\Program Files\MATLAB\R2024a\toolbox\shared\optimlib\lsqnonlin.m',222,0)">第 222 行</a>)
+    [xCurrent,Resnorm,FVAL,EXITFLAG,OUTPUT,LAMBDA,JACOB] = cnls(caller, FUN,xCurrent,A,B,Aeq,Beq,LB,UB,NONLCON, ...
+
+位置 optim.problemdef.OptimizationProblem/callSolver
+
+位置 optim.internal.problemdef.ProblemImpl/solveImpl
+
+位置 optim.problemdef.OptimizationProblem/solve
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_function_solver_fixed3', 'F:\matlab work\GitHub TEC\gra desgin\control_function_solver\current_control_function_solver_fixed3.m', 66)" style="font-weight:bold">current_control_function_solver_fixed3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\control_function_solver\current_control_function_solver_fixed3.m',66,0)">第 66 行</a>)
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+
+位置 <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('current_control_main3', 'F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m', 74)" style="font-weight:bold">current_control_main3</a> (<a href="matlab: opentoline('F:\matlab work\GitHub TEC\gra desgin\current_control_main3.m',74,0)">第 74 行</a>)
+        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_target,I_record);
+} 
+render process terminated: TS_PROCESS_WAS_KILLED
+render process terminated: TS_PROCESS_WAS_KILLED
+render process terminated: TS_PROCESS_WAS_KILLED
