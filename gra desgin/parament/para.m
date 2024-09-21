@@ -44,11 +44,11 @@ classdef para
 
         %功率不确定
         % P_chip = 6 做一些修改
-        P_chip = 6
+        P_chip = 6*2
         k_channel = 400
         delta_channel = 0.25e-3
         P = 5e3
-        mg = 0.007
+        mg = 0.007*1.5
         Dz = 3e-3
         % T_g_in = 185
         T_g_in = 185

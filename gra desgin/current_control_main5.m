@@ -11,7 +11,7 @@ addpath('parament\')
 addpath("control_function_solver\")
 
 %导入零电流工况基础的沿程功率器件温度数据作为控制的上下限依据
-Tchip_zero_record = load('material_0_SCH4_v_0.007_Tin_185K_初值随机_I_0_uniform.mat','Tchip_record');
+Tchip_zero_record = load('material_0_SCH4_v_0.0105_Tin_185K_初值随机_I_0_uniform_6W.mat','Tchip_record');
 
 Tchip_zero_ub = max(Tchip_zero_record.Tchip_record);
 Tchip_zero_lb = min(Tchip_zero_record.Tchip_record);
@@ -102,7 +102,7 @@ x0.x = (Tchip_zero_ub-Tchip_zero_lb).*rand()+Tchip_zero_lb;
 disp(x0.x);
 
 %创建优化选型
-Options = optimoptions("fmincon",'Display','iter','ConstraintTolerance',1e-8,'UseParallel',true);
+Options = optimoptions("fmincon",'Display','iter','ConstraintTolerance',1e-8);
 [sol,fval,exitflag] = solve(prob,x0,'Options',Options,'Solver','fmincon');
 % exitflag
 grad_flag = exitflag;
