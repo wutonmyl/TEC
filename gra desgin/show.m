@@ -28,10 +28,10 @@ nexttile(1)
 num = 1;
 plot(h_record(:,num))
 title('对流换热系数h (W\cdotm^{-2}\cdotK^{-1})')
-nexttile(2)
-%右一
-plot(T_chip_target_record(:,num))
-title('功率器件控温目标T-chip-target (K)')
+% nexttile(2)
+% %右一
+% plot(T_chip_target_record(:,num))
+% title('功率器件控温目标T-chip-target (K)')
 nexttile(3)
 plot(Ti_record(:,num)-Tg_record(:,num))
 title(['内侧壁面与流体温度差 （K）'])

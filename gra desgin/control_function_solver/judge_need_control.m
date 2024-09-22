@@ -7,11 +7,11 @@ Tchip_record_check = Tchip_record(1:i,j);
 grad_check = gradient(Tchip_record_check);
 prop = 200/abs(grad_check(i,j));
 %这里存在隐患，如果入口就大于300咋整
-if Tchip_record_check(i,j) >= ub
+if Tchip_record_check(i,j) > ub
     need_control = 2;
     %采用上一单元的温度
     Tchip_target_recmd = Tchip_record(i-1,j);
-elseif Tchip_record_check(i,j) <= lb
+elseif Tchip_record_check(i,j) < lb
     need_control = -2
     Tchip_target_recmd = Tchip_record(i-1,j);
 elseif (grad_check(i,j)) > grad_bond
