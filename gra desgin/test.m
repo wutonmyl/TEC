@@ -1,28 +1,28 @@
-par = para;
-% x = [4,4,9,9,14,14];
-% y = [5,13,5,13,5,13];
-% %生成山峰的高度
-% h = ones(1,6);
-% %生成山峰的坡度
-% xs = 2*ones(1,6);
-% ys = 2*ones(1,6);
-%生成地形数据
-x = [14];
-y = [14];
-%生成山峰的高度
-h = ones(1,1);
-Z = ones(171,171);
-[X,Y] = meshgrid(0:0.1:17);
-for k1 = 1
-    Z =  Z + h(k1)*exp(-((X - x(k1))/xs(k1)).^2 - ((Y - y(k1))/ys(k1)).^2);
-end
-P_total = par.P_chip*171*171;
-P_tem = sum(Z(:));
-Z = Z*P_total/P_tem;
-mesh(Z)
-
-
 % par = para;
+% % x = [4,4,9,9,14,14];
+% % y = [5,13,5,13,5,13];
+% % %生成山峰的高度
+% % h = ones(1,6);
+% % %生成山峰的坡度
+% % xs = 2*ones(1,6);
+% % ys = 2*ones(1,6);
+% %生成地形数据
+% x = [14];
+% y = [14];
+% %生成山峰的高度
+% h = ones(1,1);
+% Z = ones(171,171);
+% [X,Y] = meshgrid(0:0.1:17);
+% for k1 = 1
+%     Z =  Z + h(k1)*exp(-((X - x(k1))/xs(k1)).^2 - ((Y - y(k1))/ys(k1)).^2);
+% end
+% P_total = par.P_chip*171*171;
+% P_tem = sum(Z(:));
+% Z = Z*P_total/P_tem;
+% mesh(Z)
+% 
+% 
+% % par = para;
 % I_max = par.alpha*Tc_record/par.R;
 % Q_max = par.n*(par.alpha*I_max.*Tc_record-par.R*I_max.^2/2);
 % Q_real = par.n*(par.alpha*I_record.*Tc_record-par.R*I_record.^2/2);
@@ -68,3 +68,25 @@ mesh(Z)
 % P_total = par.P_chip*17*17;
 % P_tem = sum(Z(:));
 % Z = Z*P_total/P_tem;
+grad_list = [];
+product_list = [];
+Qtec_list = [];
+a = data_v0_Tin_185K_P_6W_exit;
+list = a.grad_17_014;
+fileds = fieldnames(a);
+for i = 1:length(fileds)
+    fileds_i = fileds(i);
+    key = fileds_i{1};
+    list(i) = a.(key);
+    Qtec_list(i) = sum(a.(key).Q_tec_record);
+    grad_list(i) = a.(key).grad_bond ;
+    product_list(i) = a.(key).grad_Power_product;
+end
+tiledlayout(2,1)
+nexttile(1)
+plot(grad_list,Qtec_list);
+title('tec功率');
+nexttile(2)
+plot(grad_list,product_list);
+title('功率梯度');
+

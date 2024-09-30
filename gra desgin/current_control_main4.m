@@ -59,7 +59,7 @@ Tchip_record = zeros(289,search_num);
         T_g_in = par.T_g_in;
         %先跑一遍零电流工况
         while Dz<=par.length
-            [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i);
+            [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
        
         
             q2_r = par.k_ct*par.a_te*(T_chip-Tc);

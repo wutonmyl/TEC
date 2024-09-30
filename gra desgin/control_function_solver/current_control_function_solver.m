@@ -1,10 +1,10 @@
-function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice] = current_control_function_solver(par,T_g_in,i,j,T_chip)
+function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice] = current_control_function_solver(par,T_g_in,i,j,T_chip,mode,h,slope)
 %   这里要把芯片温度变成电流
 %   此处显示详细说明
 rng default
 x = optimvar('x',6,'LowerBound',[-5,50,50,50,100,100],'UpperBound',[5,800,800,800,930,600]);
 %第一个式子关于pchip还需要修改
-eq1 = heat_change(i)==par.k_ct*par.a_te*(T_chip-x(2));
+eq1 = heat_change(i,mode,h,slope)==par.k_ct*par.a_te*(T_chip-x(2));
 eq2 = par.n*(par.alpha*x(1)*x(2)-0.5*x(1)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)==...
       par.k_ct*par.a_te*(T_chip-x(2));
 eq3 = par.n*(par.alpha*x(1)*x(3)+0.5*x(1)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)==...

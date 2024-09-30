@@ -1,4 +1,4 @@
-function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_taget,I_record)
+function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed3(par,T_g_in,i,j,T_chip_taget,I_record,mode,h,slope)
 %   这里要把芯片温度变成电流
 %   将方程组彻底变为优化问题,让功率器件温度变为优化目标
 rng default
@@ -7,7 +7,7 @@ lb = [0,100,T_chip_taget,185,185,185,T_chip_taget-10];
 ub = [10,400,700,700,600,600,600];
 x = optimvar('x',7,'LowerBound',lb,'UpperBound',ub);
 %第一个式子关于pchip还需要修改
-exp1 = heat_change(i)-par.k_ct*par.a_te*(x(7)-x(2));
+exp1 = heat_change(i,mode,h,slope)-par.k_ct*par.a_te*(x(7)-x(2));
 exp2 = par.n*(par.alpha*x(1)*x(2)-0.5*x(1)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)-...
       par.k_ct*par.a_te*(x(7)-x(2));
 exp3 = par.n*(par.alpha*x(1)*x(3)+0.5*x(1)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)-...

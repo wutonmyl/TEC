@@ -9,6 +9,10 @@ Dz = dz;
 i = 1;
 T_g_in = par.T_g_in;
 j = 1;
+mode = 0;
+slope = par.slope;
+h = par.h;
+current_exist = 0;
 search_num =1;
 %构造数据记录
 Q_tec_record = zeros(289,search_num);
@@ -41,10 +45,10 @@ H_g_record = zeros(search_num);
 lamda_g_record = zeros(search_num);
 Pr_g_record = zeros(search_num);
 mu_g_record = zeros(search_num);
-
+data_tem = struct();
 
 while Dz<=par.length
-    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i);
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
    
     
     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
@@ -93,11 +97,7 @@ while Dz<=par.length
     disp(rate)
     Dz = Dz+dz;
     
-   
     T_g_in = Tg;
-    
-
-    
 end
 % Tc_record = Tc_record';
 % Th_record = Th_record';
@@ -114,6 +114,10 @@ harmmean_T_chip = harmmean(Tchip_record,1);
 range_T_chip = range(Tchip_record,1);
 var_T_chip = var(Tchip_record,[],1);
 std_T_chip = std(Tchip_record,0,1);
+
+
+
+
 % %无tec部分
 % dz_notec = par.Dz;
 % Dz_notec = 0;

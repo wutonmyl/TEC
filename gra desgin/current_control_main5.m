@@ -11,7 +11,7 @@ addpath('parament\')
 addpath("control_function_solver\")
 
 %导入零电流工况基础的沿程功率器件温度数据作为控制的上下限依据
-Tchip_zero_record = load('material_0_SCH4_v_0.0105_Tin_185K_初值随机_I_0_uniform_6W.mat','Tchip_record');
+Tchip_zero_record = load('material_0_SCH4_v_0.007_Tin_185K_初值随机_I_0_uniform.mat','Tchip_record');
 
 Tchip_zero_ub = max(Tchip_zero_record.Tchip_record);
 Tchip_zero_lb = min(Tchip_zero_record.Tchip_record);
@@ -80,12 +80,10 @@ grad_lb = 0;
 x = optimvar('x',1,'LowerBound',grad_lb,'UpperBound',grad_ub);
 
 %给出优化约束，这里需要原本main5的主程序部分，程序命名为
-[Q_tec_record,COP_record,i_record,Dz_record,Tchip_record,Tc_record,Th_record,To_record,Ti_record,Tg_record,...
-h_record,q1_r_record,q2_l_record,q2_r_record,q3_l_record,q3_r_record,q4_r_record,q5_r_record,flag_record,...
-n_record,choice_record,I_record,grad_record,range_record,Cp_g_record,density_g_record,H_g_record,...
-lamda_g_record,Pr_g_record,mu_g_record,T_chip_target_record,grad,need_control_record,grad_T_chip,...
-wrong_num_record,mean_T_chip,median_T_chip,geomean_T_chip,harmmean_T_chip,range_T_chip,...
-var_T_chip,std_T_chip,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+% data = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num);
+[data,wrong_num_record,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+
+
 limit1 = wrong_num_record == zeros(289,search_num);
 limit2 = i_final == 290;
 %给出优化目标
@@ -108,19 +106,14 @@ Options = optimoptions("fmincon",'Display','iter','ConstraintTolerance',1e-8);
 grad_flag = exitflag;
 grad_bond = sol.x;
 
-[Q_tec_record,COP_record,i_record,Dz_record,Tchip_record,Tc_record,Th_record,To_record,Ti_record,Tg_record,...
-h_record,q1_r_record,q2_l_record,q2_r_record,q3_l_record,q3_r_record,q4_r_record,q5_r_record,flag_record,...
-n_record,choice_record,I_record,grad_record,range_record,Cp_g_record,density_g_record,H_g_record,...
-lamda_g_record,Pr_g_record,mu_g_record,T_chip_target_record,grad,need_control_record,grad_T_chip,...
-wrong_num_record,mean_T_chip,median_T_chip,geomean_T_chip,harmmean_T_chip,range_T_chip,...
-var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num);
+[data,~,~] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num);
 
 
 %% 开始沿程循环
 % while Dz<=par.length
     
 %% 默认用无电流模式开始工作
-%     [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i);
+%     [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
 %     %先开始记录数据
 %     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
 %     q2_l = par.n*(par.alpha*par.I*Tc-0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
@@ -188,7 +181,7 @@ var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_ze
 %         contol_repeat = contol_repeat + 1;
 %         disp('当前重复调控次数')
 %         disp(contol_repeat);
-%         [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record);
+%         [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,h,slope);
 %         disp(i);
 %         disp(j);
 %         disp('推荐温度为');
@@ -206,7 +199,7 @@ var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_ze
 %             %如果控不住，换随机初始值再来一次
 %             % T_chip_target = T_chip_target + 1;
 %             initial_change = initial_change + 1;
-%             [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record);
+%             [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,h,slope);
 %             disp(i);
 %             disp(j);
 %             disp('更换随机初始值数');
@@ -288,4 +281,4 @@ var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_ze
 % var_T_chip = var(Tchip_record(:,j));
 % std_T_chip = std(Tchip_record(:,j));
 diary off;
-show
+% show

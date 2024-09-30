@@ -1,0 +1,83 @@
+{操作在以下过程中被用户终止 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lsqnonlin')" style="font-weight:bold">lsqnonlin</a>
+
+
+位置 optim.problemdef.EquationProblem/callSolver
+
+位置 optim.internal.problemdef.ProblemImpl/solveImpl
+
+位置 optim.problemdef.EquationProblem/solve
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('function_solver', 'D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m', 30)" style="font-weight:bold">function_solver</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m',30,0)">第 30 行</a>)
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_set5', 'D:\data\matlabdata\GitHub TEC\gra desgin\control_function_solver\current_control_set5.m', 62)" style="font-weight:bold">current_control_set5</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\control_function_solver\current_control_set5.m',62,0)">第 62 行</a>)
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i);
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_main5>@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num)', 'D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m', 88)" style="font-weight:bold">current_control_main5>@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num)</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m',88,0)">第 88 行</a>)
+var_T_chip,std_T_chip,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+
+位置 optim.problemdef.fcn2optimexpr
+
+位置 optim.problemdef.fcn2optimexpr
+
+位置 fcn2optimexpr
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_main5', 'D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m', 88)" style="font-weight:bold">current_control_main5</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m',88,0)">第 88 行</a>)
+var_T_chip,std_T_chip,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+} 
+clear all
+current_control_main5
+{操作在以下过程中被用户终止 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('refpropm')" style="font-weight:bold">refpropm</a>
+
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Heat_transfer_coff_SCH4', 'D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\Heat_transfer_coff_SCH4.m', 4)" style="font-weight:bold">Heat_transfer_coff_SCH4</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\Heat_transfer_coff_SCH4.m',4,0)">第 4 行</a>)
+[Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g]=refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('function_solver>@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6))', 'D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m', 14)" style="font-weight:bold">function_solver>@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6))</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m',14,0)">第 14 行</a>)
+ls5 = fcn2optimexpr(@(x)Heat_transfer_coff_SCH4(x(5),x(6),i,par)*par.a_g*(x(5)-x(6)),x);
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('generatedEquations', 'inmem:///optim_problemdef/probID2/generatedEquations.m', 31)" style="font-weight:bold">generatedEquations</a> (<a href="matlab: opentoline('inmem:///optim_problemdef/probID2/generatedEquations.m',31,0)">第 31 行</a>)
+
+位置 optim.internal.problemdef.compile.snapExtraParams
+
+位置 finDiffEvalAndChkErr
+
+位置 finitedifferences
+
+位置 computeFinDiffGradAndJac
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('levenbergMarquardt', 'D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\levenbergMarquardt.m', 300)" style="font-weight:bold">levenbergMarquardt</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\levenbergMarquardt.m',300,0)">第 300 行</a>)
+            [JAC,~,~,numEvals,evalOK] = computeFinDiffGradAndJac(x,objfun,[],costFun, ...
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lsqncommon', 'D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\lsqncommon.m', 213)" style="font-weight:bold">lsqncommon</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\lsqncommon.m',213,0)">第 213 行</a>)
+        levenbergMarquardt(funfcn,xC,lb,ub,flags.verbosity,options,defaultopt,F,Jac, ...
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lsqnonlin', 'D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\lsqnonlin.m', 285)" style="font-weight:bold">lsqnonlin</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2023b\toolbox\shared\optimlib\lsqnonlin.m',285,0)">第 285 行</a>)
+    lsqncommon(funfcn,xCurrent,lb,ub,options,defaultopt,optimgetFlag,caller,...
+
+位置 optim.problemdef.EquationProblem/callSolver
+
+位置 optim.internal.problemdef.ProblemImpl/solveImpl
+
+位置 optim.problemdef.EquationProblem/solve
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('function_solver', 'D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m', 30)" style="font-weight:bold">function_solver</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\basic_fuction\function_solver.m',30,0)">第 30 行</a>)
+[sol,fval,exitflag] = solve(prob,x0,'Options',Options);
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_set5', 'D:\data\matlabdata\GitHub TEC\gra desgin\control_function_solver\current_control_set5.m', 62)" style="font-weight:bold">current_control_set5</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\control_function_solver\current_control_set5.m',62,0)">第 62 行</a>)
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i);
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_main5>@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num)', 'D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m', 88)" style="font-weight:bold">current_control_main5>@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num)</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m',88,0)">第 88 行</a>)
+var_T_chip,std_T_chip,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+
+位置 optim.problemdef.fcn2optimexpr
+
+位置 optim.problemdef.fcn2optimexpr
+
+位置 fcn2optimexpr
+
+位置 <a href="matlab:matlab.internal.language.introspective.errorDocCallback('current_control_main5', 'D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m', 88)" style="font-weight:bold">current_control_main5</a> (<a href="matlab: opentoline('D:\data\matlabdata\GitHub TEC\gra desgin\current_control_main5.m',88,0)">第 88 行</a>)
+var_T_chip,std_T_chip,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+} 
+clear all
+current_control_main5

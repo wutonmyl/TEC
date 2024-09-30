@@ -48,12 +48,17 @@ classdef para
         k_channel = 400
         delta_channel = 0.25e-3
         P = 5e3
-        mg = 0.007*1.5
+        mg = 0.007
         Dz = 3e-3
         % T_g_in = 185
         T_g_in = 185
         Tpc = 193.3
         R_channel = 1.5e-3
+        grad_ub = 56.83*0.3;
+        material = 'SCH4';
+        %热点行状数据
+        h = 1;
+        slope = 2;
         
 
 

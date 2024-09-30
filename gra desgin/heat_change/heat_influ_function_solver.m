@@ -1,10 +1,10 @@
-function [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = heat_influ_function_solver(par,T_g_in,i,j)
+function [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = heat_influ_function_solver(par,T_g_in,i,j,mode,h,slope)
 %FUNCTION_SOLVER 此处显示有关此函数的摘要
 %   此处显示详细说明
 rng default
 x = optimvar('x',6,'LowerBound',[50,50,50,50,100,100],'UpperBound',[800,800,800,800,930,600]);
 %第一个式子关于pchip还需要修改
-eq1 = heat_change(i)==par.k_ct*par.a_te*(x(1)-x(2));
+eq1 = heat_change(i,mode,h,slope)==par.k_ct*par.a_te*(x(1)-x(2));
 eq2 = par.n*(par.alpha*current_change(j)*x(2)-0.5*current_change(j)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)==...
       par.k_ct*par.a_te*(x(1)-x(2));
 eq3 = par.n*(par.alpha*current_change(j)*x(3)+0.5*current_change(j)^2*par.R+par.k_p*par.a_copper*(x(2)-x(3))/par.delta_p)==...
