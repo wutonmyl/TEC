@@ -18,6 +18,9 @@ Tchip_zero_lb = min(Tchip_zero_record.Tchip_record);
 
 par = para;
 search_num = 1;
+mode = 1;
+h = par.h;
+slope = par.slope;
 % %设置迭代环节基础参数
 % dz = par.Dz;
 % Dz = dz;
@@ -80,8 +83,8 @@ grad_lb = 0;
 x = optimvar('x',1,'LowerBound',grad_lb,'UpperBound',grad_ub);
 
 %给出优化约束，这里需要原本main5的主程序部分，程序命名为
-% data = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num);
-[data,wrong_num_record,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num),x,'ReuseEvaluation',true);
+% data = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num,mode,h,slope);
+[data,wrong_num_record,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num,mode,h,slope),x,'ReuseEvaluation',true);
 
 
 limit1 = wrong_num_record == zeros(289,search_num);
@@ -106,7 +109,7 @@ Options = optimoptions("fmincon",'Display','iter','ConstraintTolerance',1e-8);
 grad_flag = exitflag;
 grad_bond = sol.x;
 
-[data,~,~] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num);
+[data,~,~] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num,mode,h,slope);
 
 
 %% 开始沿程循环

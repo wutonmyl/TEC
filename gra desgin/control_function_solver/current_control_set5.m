@@ -1,4 +1,4 @@
-function [data,wrong_num_record,i_final] = current_control_set5(par,ub,lb,grad_bond,search_num)
+function [data,wrong_num_record,i_final] = current_control_set5(par,ub,lb,grad_bond,search_num,mode,h,slope)
 %%  本函数是用于整合原main5和main6函数的所有求解外设置部分，将求解流程整流为一整个输入输出函数，目的是用于新main5整体优化求取最小梯度限制值
 %   此处显示详细说明
 
@@ -10,9 +10,9 @@ i = 1;
 j = 1 ;
 i_final = i;
 T_g_in = par.T_g_in;
-mode = 1;
-h = par.h;
-slope = par.slope;
+% mode = 1;
+% h = par.h;
+% slope = par.slope;
 % search_num = 1;
 
 

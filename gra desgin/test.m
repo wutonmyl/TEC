@@ -50,7 +50,7 @@
 % n_record,choice_record,I_record,grad_record,range_record,Cp_g_record,density_g_record,H_g_record,...
 % lamda_g_record,Pr_g_record,mu_g_record,T_chip_target_record,grad,need_control_record,grad_T_chip,...
 % wrong_num_record,mean_T_chip,median_T_chip,geomean_T_chip,harmmean_T_chip,range_T_chip,...
-% var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num);
+% var_T_chip,std_T_chip,i_final] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_bond,search_num,mode,h,slope);
 
 % x = [4];
 % y = [4];
@@ -71,8 +71,8 @@
 grad_list = [];
 product_list = [];
 Qtec_list = [];
-a = data_v0_Tin_185K_P_6W_exit;
-list = a.grad_17_014;
+a = data_v0_Tin_185K_P_6W_middle;
+list = a.grad_10_2197;
 fileds = fieldnames(a);
 for i = 1:length(fileds)
     fileds_i = fileds(i);
@@ -85,8 +85,8 @@ end
 tiledlayout(2,1)
 nexttile(1)
 plot(grad_list,Qtec_list);
-title('tec功率');
+title('TEC功率 (W)');
 nexttile(2)
 plot(grad_list,product_list);
-title('功率梯度');
+title('功率*梯度 (WK\cdotcm^{-1})');
 

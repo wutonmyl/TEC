@@ -14,109 +14,111 @@ slope = par.slope;
 h = par.h;
 current_exist = 0;
 search_num =1;
-%构造数据记录
-Q_tec_record = zeros(289,search_num);
-COP_record = zeros(289,search_num);
-i_record = zeros(289,search_num);
-Dz_record = zeros(289,search_num);
-Tchip_record = zeros(289,search_num);
-Tc_record   = zeros(289,search_num);
-Th_record   = zeros(289,search_num);
-To_record   = zeros(289,search_num);
-Ti_record   = zeros(289,search_num);
-Tg_record   = zeros(289,search_num);
-h_record    = zeros(289,search_num);
-q1_r_record = zeros(289,search_num);
-q2_l_record = zeros(289,search_num);
-q2_r_record = zeros(289,search_num);
-q3_l_record = zeros(289,search_num);
-q3_r_record = zeros(289,search_num);
-q4_r_record = zeros(289,search_num);
-q5_r_record = zeros(289,search_num);
-flag_record = zeros(289,search_num);
-n_record = zeros(289,search_num);
-choice_record = zeros(289,search_num);
-I_record = zeros(289,search_num);
-grad_record = zeros(search_num);
-range_record = zeros(search_num);
-Cp_g_record = zeros(search_num);
-density_g_record = zeros(search_num);
-H_g_record = zeros(search_num);
-lamda_g_record = zeros(search_num);
-Pr_g_record = zeros(search_num);
-mu_g_record = zeros(search_num);
-data_tem = struct();
 
-while Dz<=par.length
-    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
-   
-    
-    q2_r = par.k_ct*par.a_te*(T_chip-Tc);
-    q2_l = par.n*(par.alpha*par.I*Tc-0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
-    q3_r = par.k_ct*par.a_te*(Th-To);
-    q3_l = par.n*(par.alpha*par.I*Th+0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
-    q4_r= par.k_channel*par.a_te*(To-Ti)/par.delta_channel;
-    q5_r= h*par.a_g*(Ti-Tg);
-    Q_tec = q3_l-q2_l;
-    Q_tec = abs(Q_tec);
-    COP = 1/(Q_tec/q2_l);
-    [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g] = refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
-    
-    
-    Cp_g_record(i,j) = Cp_g;
-    density_g_record(i,j) = density_g;
-    H_g_record(i,j) = H_g;
-    mu_g_record(i,j) = mu_g;
-    lamda_g_record(i,j) = lamda_g;
-    Pr_g_record(i,j) = Pr_g;
-    i_record(i,j) = i;
-    Tchip_record(i,j) = T_chip;
-    I_record(i,j) = 0;
-    Tc_record(i,j) = Tc;
-    Th_record(i,j) = Th;
-    To_record(i,j) = To;
-    Ti_record(i,j) = Ti;
-    Tg_record(i,j) = Tg;
-    h_record(i,j) = h;
-    
-    q2_l_record(i,j) = q2_l;
-    q2_r_record(i,j) = q2_r;
-    q3_l_record(i,j) = q3_l;
-    q3_r_record(i,j) = q3_r;
-    q4_r_record(i,j) = q4_r;
-    q5_r_record(i,j) = q5_r;
-    flag_record(i,j) = flag;
-    n_record(i,j) = n;
-    choice_record(i,j) = choice;
-    COP_record(i,j) = COP;
-    Q_tec_record(i,j) = Q_tec;
-    Dz_record(i,j) = Dz;
-
-    i = i+1;
-    rate = Dz/par.length;
-    disp(rate)
-    Dz = Dz+dz;
-    
-    T_g_in = Tg;
-end
-% Tc_record = Tc_record';
-% Th_record = Th_record';
-% To_record = To_record';
-% Ti_record = Ti_record';
-% Tg_record = Tg_record';
-
-% Tchip_record = Tchip_record';
-% h_record = h_record';
-mean_T_chip = mean(Tchip_record,1);
-median_T_chip = median(Tchip_record,1);
-geomean_T_chip = geomean(Tchip_record,1);
-harmmean_T_chip = harmmean(Tchip_record,1);
-range_T_chip = range(Tchip_record,1);
-var_T_chip = var(Tchip_record,[],1);
-std_T_chip = std(Tchip_record,0,1);
-
-
-
+data_name = data_name(par,current_exist,mode,h,slope)
+% %构造数据记录
+% Q_tec_record = zeros(289,search_num);
+% COP_record = zeros(289,search_num);
+% i_record = zeros(289,search_num);
+% Dz_record = zeros(289,search_num);
+% Tchip_record = zeros(289,search_num);
+% Tc_record   = zeros(289,search_num);
+% Th_record   = zeros(289,search_num);
+% To_record   = zeros(289,search_num);
+% Ti_record   = zeros(289,search_num);
+% Tg_record   = zeros(289,search_num);
+% h_record    = zeros(289,search_num);
+% q1_r_record = zeros(289,search_num);
+% q2_l_record = zeros(289,search_num);
+% q2_r_record = zeros(289,search_num);
+% q3_l_record = zeros(289,search_num);
+% q3_r_record = zeros(289,search_num);
+% q4_r_record = zeros(289,search_num);
+% q5_r_record = zeros(289,search_num);
+% flag_record = zeros(289,search_num);
+% n_record = zeros(289,search_num);
+% choice_record = zeros(289,search_num);
+% I_record = zeros(289,search_num);
+% grad_record = zeros(search_num);
+% range_record = zeros(search_num);
+% Cp_g_record = zeros(search_num);
+% density_g_record = zeros(search_num);
+% H_g_record = zeros(search_num);
+% lamda_g_record = zeros(search_num);
+% Pr_g_record = zeros(search_num);
+% mu_g_record = zeros(search_num);
+% data_tem = struct();
+% 
+% while Dz<=par.length
+%     [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
+% 
+% 
+%     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
+%     q2_l = par.n*(par.alpha*par.I*Tc-0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
+%     q3_r = par.k_ct*par.a_te*(Th-To);
+%     q3_l = par.n*(par.alpha*par.I*Th+0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
+%     q4_r= par.k_channel*par.a_te*(To-Ti)/par.delta_channel;
+%     q5_r= h*par.a_g*(Ti-Tg);
+%     Q_tec = q3_l-q2_l;
+%     Q_tec = abs(Q_tec);
+%     COP = 1/(Q_tec/q2_l);
+%     [Cp_g,density_g,H_g,mu_g,lamda_g,Pr_g] = refpropm('CDHVL^','T',Tg,'P',par.P,'methane');
+% 
+% 
+%     Cp_g_record(i,j) = Cp_g;
+%     density_g_record(i,j) = density_g;
+%     H_g_record(i,j) = H_g;
+%     mu_g_record(i,j) = mu_g;
+%     lamda_g_record(i,j) = lamda_g;
+%     Pr_g_record(i,j) = Pr_g;
+%     i_record(i,j) = i;
+%     Tchip_record(i,j) = T_chip;
+%     I_record(i,j) = 0;
+%     Tc_record(i,j) = Tc;
+%     Th_record(i,j) = Th;
+%     To_record(i,j) = To;
+%     Ti_record(i,j) = Ti;
+%     Tg_record(i,j) = Tg;
+%     h_record(i,j) = h;
+% 
+%     q2_l_record(i,j) = q2_l;
+%     q2_r_record(i,j) = q2_r;
+%     q3_l_record(i,j) = q3_l;
+%     q3_r_record(i,j) = q3_r;
+%     q4_r_record(i,j) = q4_r;
+%     q5_r_record(i,j) = q5_r;
+%     flag_record(i,j) = flag;
+%     n_record(i,j) = n;
+%     choice_record(i,j) = choice;
+%     COP_record(i,j) = COP;
+%     Q_tec_record(i,j) = Q_tec;
+%     Dz_record(i,j) = Dz;
+% 
+%     i = i+1;
+%     rate = Dz/par.length;
+%     disp(rate)
+%     Dz = Dz+dz;
+% 
+%     T_g_in = Tg;
+% end
+% % Tc_record = Tc_record';
+% % Th_record = Th_record';
+% % To_record = To_record';
+% % Ti_record = Ti_record';
+% % Tg_record = Tg_record';
+% 
+% % Tchip_record = Tchip_record';
+% % h_record = h_record';
+% mean_T_chip = mean(Tchip_record,1);
+% median_T_chip = median(Tchip_record,1);
+% geomean_T_chip = geomean(Tchip_record,1);
+% harmmean_T_chip = harmmean(Tchip_record,1);
+% range_T_chip = range(Tchip_record,1);
+% var_T_chip = var(Tchip_record,[],1);
+% std_T_chip = std(Tchip_record,0,1);
+% 
+% 
+% 
 
 % %无tec部分
 % dz_notec = par.Dz;
