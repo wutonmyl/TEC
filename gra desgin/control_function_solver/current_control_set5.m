@@ -1,4 +1,4 @@
-function [data,wrong_num_record,i_final] = current_control_set5(par,ub,lb,grad_bond,search_num,mode,h,slope)
+function [data,wrong_num_record,i_final] = current_control_set5(par,ub,lb,grad_bond,search_num,mode,hight,slope)
 %%  本函数是用于整合原main5和main6函数的所有求解外设置部分，将求解流程整流为一整个输入输出函数，目的是用于新main5整体优化求取最小梯度限制值
 %   此处显示详细说明
 
@@ -60,7 +60,7 @@ wrong_num_record = zeros(289,search_num);
 while Dz<=par.length
     
     %% 默认用无电流模式开始工作
-    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,hight,slope);
     %先开始记录数据
     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
     q2_l = par.n*(par.alpha*par.I*Tc-0.5*par.I^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
@@ -125,7 +125,7 @@ while Dz<=par.length
         contol_repeat = contol_repeat + 1;
         disp(['进入独立调控环节,当前重复调控次数:',num2str(contol_repeat)])
         % disp(contol_repeat);
-        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,h,slope);
+        [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,hight,slope);
         disp(i);
         disp(j);
         disp(['推荐温度为:',num2str(Tchip_target_recmd)]);
@@ -144,7 +144,7 @@ while Dz<=par.length
             %如果控不住，换随机初始值再来一次
             % T_chip_target = T_chip_target + 1;
             initial_change = initial_change + 1;
-            [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,h,slope);
+            [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_solver_fixed5(par,T_g_in,i,j,Tchip_target_recmd,I_record,mode,hight,slope);
             disp(i);
             disp(j);
             disp(['更换随机初始值数:',num2str(initial_change)]);

@@ -18,7 +18,8 @@
 % Ti_record = Ti_record';
 % Tg_record = Ti_record';
 % h_record = h_record';
-data_single = data_v0_Tin_185K_P_6W_uniform.grad_0_26465
+data_single = data_ctl.case4_1_1.grad_5_4
+% data_single = data_v0_Tin_185K_P_6W_entrance.grad_5_4849;
 tiledlayout(8,3);
 % nexttile
 % plot(exitflag_record)

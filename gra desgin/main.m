@@ -1,21 +1,31 @@
-%计算基本工况的主函数
+%计算基本工况的主函数，要计算包括基础工况的沿程热性能参数和梯度限制
 %引入基本方程
 addpath('basic_fuction\')
 %引入数据类文件夹
 addpath('parament\')
+%设定基础参数
 par = para;
 dz = par.Dz;
 Dz = dz;
 i = 1;
 T_g_in = par.T_g_in;
 j = 1;
-mode = 0;
+mode = 2 ;
 slope = par.slope;
 h = par.h;
+
 current_exist = 0;
 search_num =1;
 
-data_name = data_name(par,current_exist,mode,h,slope)
+% data_zero = struct();
+data_zero.case4_2_0 = current_control_set1(par,mode,h,slope,search_num);
+
+
+
+
+
+
+% data_name = data_name(par,current_exist,mode,h,slope)
 % %构造数据记录
 % Q_tec_record = zeros(289,search_num);
 % COP_record = zeros(289,search_num);

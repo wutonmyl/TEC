@@ -1,4 +1,4 @@
-function [data] = current_control_set1(par,mode,h,slope,search_num)
+function [data] = current_control_set1(par,mode,hight,slope,search_num)
 %% 本函数是用于整合main函数的所有求解外设置部分，将结果转为结构体输出
 %   输入par，热点模式，热点峰值，热点斜率
 dz = par.Dz;
@@ -43,10 +43,12 @@ lamda_g_record = zeros(search_num);
 Pr_g_record = zeros(search_num);
 mu_g_record = zeros(search_num);
 T_chip_target_record = zeros(289,search_num);
+grad_flag = [];
+grad_bond = [];
 
 
 while Dz<=par.length
-    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,h,slope);
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver(par,T_g_in,i,mode,hight,slope);
    
     
     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
@@ -115,6 +117,53 @@ var_T_chip = var(Tchip_record(:,j));
 std_T_chip = std(Tchip_record(:,j));
 
 
+%% 计算梯度限制
+% % Tchip_zero_record = Tchip_record;
+
+% Tchip_zero_ub = max(Tchip_record);
+% Tchip_zero_lb = min(Tchip_record);
+% % 构建优化问题（存疑，怎么大的嵌套小的问题还是两说）
+% % 优化目标：梯度限制最小
+% % 优化约束：能跑完整个沿程流程，中间不出现梯度过低，函数陷入循环的情况
+% % 难点：约束函数怎么构建，需要将我们的整个main函数重构一遍
+% 
+% %定义随机种子
+% rng shuffle
+% 
+% %定义优化变量
+% grad_ub = 56.83*0.3 ;
+% grad_lb = 0;
+% x = optimvar('x',1,'LowerBound',grad_lb,'UpperBound',grad_ub);
+% 
+% %给出优化约束，这里需要原本main5的主程序部分，程序命名为
+% % data = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num,mode,h,slope);
+% [data,wrong_num_record,i_final] = fcn2optimexpr(@(x)current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,x,search_num,mode,hight,slope),x,'ReuseEvaluation',true);
+% 
+% 
+% limit1 = wrong_num_record == zeros(289,search_num);
+% limit2 = i_final == 290;
+% %给出优化目标
+% target = x;
+% %构建问题
+% prob = optimproblem('Objective',target);
+% % prob.Constraints.limit1 = limit1;
+% prob.Constraints.limit2 = limit2;
+% 
+% %查看可用的求解器
+% [~,validsolvers] = solvers(prob);
+% disp(validsolvers);
+% x0.x = (Tchip_zero_ub-Tchip_zero_lb).*rand()+Tchip_zero_lb;
+% disp(x0.x);
+% 
+% %创建优化选型
+% Options = optimoptions("fmincon",'Display','iter','ConstraintTolerance',1e-8);
+% [sol,fval,exitflag] = solve(prob,x0,'Options',Options,'Solver','fmincon');
+% % exitflag
+% grad_flag = exitflag;
+% grad_bond = sol.x;
+
+
+%% 记录数据
 data.Q_tec_record = Q_tec_record;
 data.COP_record = COP_record;
 data.i_record = i_record;
@@ -156,6 +205,8 @@ data.harmmean_T_chip = harmmean_T_chip;
 data.range_T_chip = range_T_chip;
 data.var_T_chip = var_T_chip;
 data.std_T_chip = std_T_chip;
+% data.grad_bond = grad_bond;
+% data.grad_flag = exitflag;
 
 
 end
