@@ -57,7 +57,7 @@ classdef para
         grad_ub = 56.83*0.3;
         material = 'SCH4';
         %热点行状数据
-        h = 1.5;
+        h = 1;
         slope = 2;
         
 

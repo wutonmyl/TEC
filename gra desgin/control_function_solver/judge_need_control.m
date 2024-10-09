@@ -1,6 +1,6 @@
 function [need_control,Tchip_target_recmd] = judge_need_control(Tchip_record,i,j,lb,ub,grad_bond)
 %   判断是否需要采用独立调控,如果需要就给出合适的调控目标
-%   此处显示详细说明
+%   如何给定这个调控目标呢
 % grad_bond = 56.83*0.3*0.2;
 Tchip_record_check = Tchip_record(1:i,j);
 %因为是边缘，所以是准的

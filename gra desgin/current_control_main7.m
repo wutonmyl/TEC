@@ -38,13 +38,15 @@ data_zero = data_zero.data_zero;
 grad_lb = 0;
 grad_ub = par.grad_ub;
 grad_target = grad_lb:0.1:grad_ub;
-%需要修改
-data_zero_use = data_zero.case2_1_0;
-Tchip_zero_ub = max(data_zero_use.Tchip_record);
+%% 需要修改，使用的基础工况
+data_zero_use = data_zero.case1_2_0;
+%这里根据需要自行修改温度上界和温度下界
+Tchip_zero_ub = mean(data_zero_use.Tchip_record);
+% Tchip_zero_ub = max(data_zero_use.Tchip_record);
 Tchip_zero_lb = min(data_zero_use.Tchip_record);
-
+%% 创造一个和正常data数据同字段的空结构体用于构造结构体数组
 %创造一个跟数据统一格式的结构体，用于创造替身结构体数组
-origin_stc = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_ub,search_num,mode,h,slope);
+origin_stc = current_control_set7(par,Tchip_zero_ub,Tchip_zero_lb,grad_ub,search_num,mode,h,slope);
 
 %获取结构体的字段数据
 %遍历结构体，清空数据，保留字段，减少运行内存
@@ -55,16 +57,16 @@ for i = 1:length(fileds)
     origin_stc.(key) = [];
 end
 data_ctl_tem = repmat(origin_stc,[length(grad_target),1]);
-
+%% 并行计算，将数据存入结构体数组中去
 parfor i = 1:length(grad_target)
-    [data_tem,~,~] = current_control_set5(par,Tchip_zero_ub,Tchip_zero_lb,grad_target(i),search_num,mode,h,slope);
+    [data_tem,~,~] = current_control_set7(par,Tchip_zero_ub,Tchip_zero_lb,grad_target(i),search_num,mode,h,slope);
     %随循环改变输出变量名
     data_ctl_tem(i) = data_tem;
 end
-%需要修改
+%% 需要修改，将结构体数组数据导入到命名好的结构体数据中去
 for i = 1:length(grad_target)
     expr_grad_name = replace(num2str(grad_target(i)),'.','_');
-    expr = ['data_ctl.case2_1_1.grad_' expr_grad_name ' = data_ctl_tem(i);'];
+    expr = ['data_ctl.test.case1_2_1_strict.grad_' expr_grad_name ' = data_ctl_tem(i);'];
     eval (expr);
 end
 

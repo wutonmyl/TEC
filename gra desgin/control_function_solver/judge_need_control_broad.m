@@ -1,0 +1,46 @@
+function [need_control,Tchip_target_recmd_ub,Tchip_target_recmd_lb] = judge_need_control_broad(Tchip_record,i,j,lb,ub,grad_bond)
+%   判断是否需要采用独立调控,如果需要就给出合适的调控目标
+%   如何给定这个调控目标呢,返回一个控温目标上界，一个控温目标下界
+
+% grad_bond = 56.83*0.3*0.2;
+Tchip_record_check = Tchip_record(1:i,j);
+%因为是边缘，所以这里计算的梯度是准的
+grad_check = gradient(Tchip_record_check);
+% prop = 200/abs(grad_check(i,j));
+
+%这里存在隐患，如果入口就大于300咋整、
+
+recmd_ub_1 = ub;
+recmd_lb_1 = lb;
+if i > 1
+    recmd_ub_2 = Tchip_record(i-1,j) + grad_bond;
+    recmd_lb_2 = Tchip_record(i-1,j) - grad_bond;
+else
+    recmd_ub_2 = recmd_ub_1;
+    recmd_lb_2 = recmd_lb_1;
+end
+
+
+
+Tchip_target_recmd_ub = min(recmd_ub_1,recmd_ub_2);
+Tchip_target_recmd_lb = max(recmd_lb_2,recmd_lb_1);
+if Tchip_record_check(i,j) > ub
+    need_control = 2;
+    %采用上一单元的温度
+    % Tchip_target_recmd = Tchip_record(i-1,j);
+elseif Tchip_record_check(i,j) < lb
+    need_control = -2;
+    % Tchip_target_recmd = Tchip_record(i-1,j);
+elseif (grad_check(i,j)) > grad_bond
+    need_control = 1;
+    %采用两单元间的中间值降低梯度
+    % Tchip_target_recmd = Tchip_record(i-1,j);
+    % Tchip_target_recmd = (min(Tchip_record(i-1,j),Tchip_record(i,j)) + abs(Tchip_record(i,j)-Tchip_record(i-1,j))/prop);
+elseif grad_check(i,j) < -grad_bond
+    need_control = -1;
+    % Tchip_target_recmd = Tchip_record(i-1,j);
+    % Tchip_target_recmd = (max(Tchip_record(i-1,j),Tchip_record(i,j)) - abs(Tchip_record(i,j)-Tchip_record(i-1,j))/prop);
+else
+    need_control = 0;
+    % Tchip_target_recmd = Tchip_record(i,j);
+end
