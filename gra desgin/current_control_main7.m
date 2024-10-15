@@ -1,4 +1,5 @@
 % 用于计算给定零电流工况下的相应梯度调控工况
+diary('test_DiaryFile');
 %% 读取基础参数，基础函数
 %引入热量变化函数库，确保可以计算不同热量分布的工况
 addpath(['heat_change\'])
@@ -38,12 +39,11 @@ data_zero = data_zero.data_zero;
 grad_lb = 0;
 grad_ub = par.grad_ub;
 grad_target = grad_lb:0.1:grad_ub;
-% grad_target = gpuArray(grad_target);
 %% 需要修改，使用的基础工况
-data_zero_use = data_zero.case2_1_0;
+data_zero_use = data_zero.case1_2_0;
 %这里根据需要自行修改温度上界和温度下界
-% Tchip_zero_ub = mean(data_zero_use.Tchip_record);
-Tchip_zero_ub = max(data_zero_use.Tchip_record);
+Tchip_zero_ub = mean(data_zero_use.Tchip_record);
+% Tchip_zero_ub = max(data_zero_use.Tchip_record);
 Tchip_zero_lb = min(data_zero_use.Tchip_record);
 %% 创造一个和正常data数据同字段的空结构体用于构造结构体数组
 %创造一个跟数据统一格式的结构体，用于创造替身结构体数组
@@ -67,10 +67,10 @@ end
 %% 需要修改，将结构体数组数据导入到命名好的结构体数据中去
 for i = 1:length(grad_target)
     expr_grad_name = replace(num2str(grad_target(i)),'.','_');
-    expr = ['data_ctl.test.case2_1_1.grad_' expr_grad_name ' = data_ctl_tem(i);'];
+    expr = ['data_ctl.test.case2_1_1_strict.grad_' expr_grad_name ' = data_ctl_tem(i);'];
     eval (expr);
 end
 
-
+diary off;
 
 
