@@ -18,7 +18,7 @@
 % Ti_record = Ti_record';
 % Tg_record = Ti_record';
 % h_record = h_record';
-data_single = data_ctl.test.case1_2_1.grad_12_4;
+data_single = data_ctl.test.case1_2_1.grad_5_8;
 % data_single = data_v0_Tin_185K_P_6W_entrance.grad_5_4849;
 tiledlayout(8,3);
 % nexttile
@@ -34,7 +34,7 @@ nexttile(2)
 % plot(data_single.T_chip_target_record(:,num))
 % title('功率器件控温目标T-chip-target (K)')
 % nexttile(3)
-plot(data_single.T_chip_target_ub_record(:,num))
+plot(data_single.T_chip_target_ub_record(2:289,num))
 title('功率器件控温目标上界T-chip-target (K)')
 nexttile(3)
 plot(data_single.Ti_record(:,num)-data_single.Tg_record(:,num))
@@ -46,12 +46,12 @@ plot(data_single.Cp_g_record(:,num))
 title("流体比热容Cp (J\cdotkg^{-1}\cdotK^{-1})")
 nexttile(5)
 %右二
-plot(data_single.T_chip_target_ub_record(:,num))
+plot(data_single.T_chip_target_ub_record(2:289,num))
 hold on
 plot(data_single.Tchip_record(:,num))
 
 plot(data_single.T_chip_target_lb_record(:,num))
-title('功率器件实际温度Tchip (K)')
+title('功率器件实际温度Tchip及其约束上下界 (K)')
 hold off
 nexttile(6)
 plot(gradient(data_single.Tchip_record(:,num))/0.3)

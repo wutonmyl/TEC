@@ -1,4 +1,5 @@
 % 用于计算给定零电流工况下的相应梯度调控工况
+diary('test_DiaryFile');
 %% 读取基础参数，基础函数
 %引入热量变化函数库，确保可以计算不同热量分布的工况
 addpath(['heat_change\'])
@@ -66,10 +67,10 @@ end
 %% 需要修改，将结构体数组数据导入到命名好的结构体数据中去
 for i = 1:length(grad_target)
     expr_grad_name = replace(num2str(grad_target(i)),'.','_');
-    expr = ['data_ctl.test.case1_2_1_strict.grad_' expr_grad_name ' = data_ctl_tem(i);'];
+    expr = ['data_ctl.test.case2_1_1_strict.grad_' expr_grad_name ' = data_ctl_tem(i);'];
     eval (expr);
 end
 
-
+diary off;
 
 
