@@ -94,36 +94,45 @@ par = para;
 % 
 
 %比较两种梯度限制下的控温目标
-data_1 = data_ctl.case1_1_1.grad_8_5849;
-data_2 = data_ctl.case1_1_1.grad_4_8849;
-Tchip_1 = data_ctl.case1_1_1.grad_8_5849.T_chip_target_record;
-Tg_1 = data_1.Tg_record;
-Tg_2 = data_2.Tg_record;
-h_1 = data_1.h_record;
-h_2 = data_2.h_record
-Tchip_2 = data_ctl.case1_1_1.grad_4_8849.T_chip_target_record;
-tiledlayout(2,4);
-nexttile(1)
-plot(Tchip_1);
-title('梯度限制8.5849控温目标');
-nexttile(2)
-plot(Tg_1(1:65));
-title('梯度限制8.5849流体温升');
-nexttile(3);
-plot(h_1(1:65));
-title('梯度限制8.5849对流换热系数');
-nexttile(4)
-plot(data_1.Cp_g_record);
-title('梯度限制8.5849比热容');
-nexttile(5)
-plot(Tchip_2(1:65));
-title('梯度限制4.8849控温目标');
-nexttile(6);
-plot(Tg_2(1:65));
-title('梯度限制4.8849流体温度');
-nexttile(7);
-plot(h_2(1:65));
-title('梯度限制4.8849对流换热系数');
-nexttile(8);
-plot(data_2.Cp_g_record(1:65));
-title('梯度限制4.8849比热容');
+% data_1 = data_ctl.case1_1_1.grad_8_5849;
+% data_2 = data_ctl.case1_1_1.grad_4_8849;
+% Tchip_1 = data_ctl.case1_1_1.grad_8_5849.T_chip_target_record;
+% Tg_1 = data_1.Tg_record;
+% Tg_2 = data_2.Tg_record;
+% h_1 = data_1.h_record;
+% h_2 = data_2.h_record
+% Tchip_2 = data_ctl.case1_1_1.grad_4_8849.T_chip_target_record;
+% tiledlayout(2,4);
+% nexttile(1)
+% plot(Tchip_1);
+% title('梯度限制8.5849控温目标');
+% nexttile(2)
+% plot(Tg_1(1:65));
+% title('梯度限制8.5849流体温升');
+% nexttile(3);
+% plot(h_1(1:65));
+% title('梯度限制8.5849对流换热系数');
+% nexttile(4)
+% plot(data_1.Cp_g_record);
+% title('梯度限制8.5849比热容');
+% nexttile(5)
+% plot(Tchip_2(1:65));
+% title('梯度限制4.8849控温目标');
+% nexttile(6);
+% plot(Tg_2(1:65));
+% title('梯度限制4.8849流体温度');
+% nexttile(7);
+% plot(h_2(1:65));
+% title('梯度限制4.8849对流换热系数');
+% nexttile(8);
+% plot(data_2.Cp_g_record(1:65));
+% title('梯度限制4.8849比热容');
+
+%% 测试gpu
+
+i_record = zeros(289,1,'gpuArray');
+% i_record = gpuArray(i_record);
+for i = 1:289
+    
+    i_record(i,1) = i;
+end

@@ -3,6 +3,7 @@ function [I,Tc,Th,To,Ti,Tg,h,flag,n,choice,T_chip] = current_control_function_so
 %   将方程组彻底变为优化问题,让功率器件温度变为优化目标
 rng default
 % 定义优化变量
+% [Tchip_target_recmd_ub,Tchip_target_recmd_lb] = gather(Tchip_target_recmd_ub,Tchip_target_recmd_lb);
 lb = [0,100,Tchip_target_recmd_lb,185,185,185,Tchip_target_recmd_lb-50];
 ub = [10,400,700,700,600,600,600];
 x = optimvar('x',7,'LowerBound',lb,'UpperBound',ub);
@@ -31,6 +32,7 @@ b = 1;
 limit1 = (x(3)-x(2))>=0 ;
 limit2 = par.n*(par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2) >= 0;
 %增加梯度项
+
 target_ub_limit = x(7)-Tchip_target_recmd_ub <= 0;
 target_lb_limit = x(7)-Tchip_target_recmd_lb >= 0;
 %优化目标换为电功率最小
