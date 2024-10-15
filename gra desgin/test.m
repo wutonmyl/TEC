@@ -130,9 +130,11 @@ par = para;
 
 %% 测试gpu
 
-i_record = zeros(289,1,'gpuArray');
-% i_record = gpuArray(i_record);
-for i = 1:289
-    
-    i_record(i,1) = i;
-end
+% i_record = zeros(289,1,'gpuArray');
+% % i_record = gpuArray(i_record);
+% for i = 1:289
+% 
+%     i_record(i,1) = i;
+% end
+
+disp('dddd\bf')
