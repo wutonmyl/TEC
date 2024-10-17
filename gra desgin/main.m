@@ -4,13 +4,13 @@ addpath('basic_fuction\')
 %引入数据类文件夹
 addpath('parament\')
 %设定基础参数
-par = para;
+par = para_fixed;
 dz = par.Dz;
 Dz = dz;
 i = 1;
 T_g_in = par.T_g_in;
 j = 1;
-mode = 3;
+mode = 2;
 slope = par.slope;
 h = par.h;
 
@@ -18,7 +18,8 @@ current_exist = 0;
 search_num =1;
 
 % data_zero = struct();
-data_zero.case1_3_0 = current_control_set1(par,mode,h,slope,search_num);
+%需要改数据昵称
+data_zero.fixed.case4_2_0 = current_control_set1(par,mode,h,slope,search_num);
 
 
 

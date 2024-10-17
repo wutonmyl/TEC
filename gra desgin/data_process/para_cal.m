@@ -1,5 +1,5 @@
-par = para
-R = (par.lou_p+par.lou_n)*par.delta_p/par.a_copper
+par = para_fixed;
+R = (par.lou_p+par.lou_n)*par.delta_p/par.a_p
 k_ct = 1/(par.delta_copper/par.k_copper+par.delta_ceramic/par.k_ceramic)
 delta_ct = par.delta_copper+par.delta_ceramic
 par.k_ct*par.a_te/par.delta_ct

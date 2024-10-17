@@ -35,8 +35,11 @@ limit2 = par.n*(par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2) >= 0;
 
 target_ub_limit = x(7)-Tchip_target_recmd_ub <= 0;
 target_lb_limit = x(7)-Tchip_target_recmd_lb >= 0;
-%优化目标换为电功率最小
+%优化目标为功率最小
 target = (par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2)^2;
+%优化目标换为1/COP最小
+% 
+% target = ((par.alpha*x(1)*x(2)-0.5*x(1)^2*par.R+par.k_n*par.a_copper*(x(2)-x(3))/par.delta_n)/(par.alpha*x(1)*(x(3)-x(2))+par.R*x(1)^2))^-2;
 % if i == 1
 %     target = a*(x(7)-Tchip_target_recmd)^2;
 % else
