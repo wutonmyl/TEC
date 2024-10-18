@@ -1,5 +1,5 @@
 %本脚本用于获取梯度数据中可行的数据范围和最小的可行梯度，并用图像表示出来
-data = data_ctl.test.COP.case1_2_1;
+data = data_ctl.fixed.range_target.case1_2_1 ;
 %获取data的字段用于遍历
 fileds = fieldnames(data);
 data_grad = [];
