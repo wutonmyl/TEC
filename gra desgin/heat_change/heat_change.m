@@ -57,11 +57,12 @@ Power(290) = Power(289);
 
 
 P = Power(n);
+
 % 均匀热流更改
 if mode == 0
     P = par.P_chip;
 end
-
+P = P';
 end
 
 

@@ -16,7 +16,12 @@ slope = par.slope;
 %导入基础工况，给出温度上下界
 data_zero = load('data_material_SCH4_zero.mat','data_zero');
 data_zero = data_zero.data_zero;
-Tchip_zero_ub = mean(data_zero_use.Tchip_record);
+data_zero_use = data_zero.fixed.case1_2_0;
+Tchip_zero_ub = data_zero_use.Tchip_record(289,1);
 Tchip_zero_lb = min(data_zero_use.Tchip_record);
 grad_lb = 0;
 grad_ub = par.grad_ub;
+
+I = current_control_set9(par,mode,h,slope,Tchip_zero_lb,Tchip_zero_ub);
+
+[data,i_final,break_flag,Tchip_record,grad_T_chip,Q_tec_overall,COP_record] = current_control_function_solver_fixed9(par,I);

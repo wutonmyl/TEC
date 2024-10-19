@@ -1,10 +1,13 @@
-function [data,i_final,break_flag,Tchip_record,grad_T_chip,Q_tec_overall,COP_record] = current_control_function_solver_fixed9(I)
+function [data,i_final,break_flag,Tchip_record,grad_T_chip,Q_tec_overall,COP_record] = current_control_function_solver_fixed9(par,Tchip_zero_lb,Tchip_zero_ub,mode,h,slope,I)
 %% 本函数是用于计算main9的优化表达式
 %   输入：给定的电流序列
 %   输出：约束量-单元可行总长（不可行的话直接跳出循环结束计算了）；温度范围
 %         优化量-梯度，总功率，COP
 dz = par.Dz;
 Dz = dz;
+pressure = par.P;
+mg = par.mg;
+% p_chip = heat_change(i,mode,h,slope);
 
 T_g_in = par.T_g_in;
 j = 1;
@@ -52,7 +55,8 @@ grad_bond = [];
 %% 选择电流模式
 
 for i = 1:289
-    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver8(par,T_g_in,pressure,mg,p_chip,I(i));
+    [T_chip,Tc,Th,To,Ti,Tg,h,flag,n,choice] = function_solver9(par,T_g_in,pressure,mg,i,mode,h,slope,I(i));
+    disp(I(i))
     q2_r = par.k_ct*par.a_te*(T_chip-Tc);
     q2_l = par.n*(par.alpha*I(i)*Tc-0.5*I(i)^2*par.R+par.k_n*par.a_copper*(Tc-Th)/par.delta_n);
     q3_r = par.k_ct*par.a_te*(Th-To);
@@ -98,11 +102,18 @@ for i = 1:289
     disp(i);
     break_flag = 0;
     if flag<=0
-        break_flag = 1;
+        break_flag = 1
         break
     elseif COP < 0
-        break_flag = -1;
+        break_flag = -1
         break
+    elseif T_chip<=Tchip_zero_lb||T_chip>=Tchip_zero_ub
+        break_flag = -2
+        break
+    elseif T_chip>=Tchip_zero_ub
+        break_flag = 2
+        break
+ 
 
     end
 
@@ -115,6 +126,7 @@ for i = 1:289
 end
 
 %构造统计数据
+
 grad_T_chip = gradient(Tchip_record(:,j));
 Q_tec_overall = sum(Q_tec_record(:,j));
 mean_T_chip = mean(Tchip_record(:,j));
